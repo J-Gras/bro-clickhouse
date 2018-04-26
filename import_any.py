@@ -129,6 +129,12 @@ def get_data(filename, cmd):
             rec['TTLs'] = [float_to_int(v) for v in rec['TTLs'] if v]
         if 'suppress_for' in rec:
             rec['suppress_for'] = float_to_int(rec['suppress_for'])
+
+        if 'seen.indicator' in rec:
+            rec['seen_indicator'] = rec.pop("seen.indicator")
+            rec['seen_indicator_type'] = rec.pop("seen.indicator_type")
+            rec['seen_where'] = rec.pop("seen.where")
+            rec['seen_node'] = rec.pop("seen.node")
         yield rec
 
 done = Seen("clickhouse.imported")
